@@ -12,13 +12,15 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import AddIcon from '@mui/icons-material/Add';
 import {Avatar} from "@mui/material";
+import colors from "./colors"
 
 const drawerWidth = 240;
 
@@ -115,10 +117,10 @@ export default function MiniDrawer() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
-                <Toolbar>
+            <AppBar position="fixed" open={open} sx={{ backgroundColor: colors.primary}}>
+                <Toolbar sx={{ display: "flex", alignItems: "center" }}>
                     <IconButton
-                        color="inherit"
+                        color="black"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
@@ -131,128 +133,187 @@ export default function MiniDrawer() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Mini variant drawer
+                    <Typography variant="h6" noWrap component="div" sx={{ color: "black" }}>
+                        Where's MM
                     </Typography>
                 </Toolbar>
             </AppBar>
+
             <Drawer variant="permanent" open={open}>
-                <DrawerHeader>
+                <DrawerHeader sx={{backgroundColor: "rgba(187,215,186,0.73)"}}>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </DrawerHeader>
 
-                {/*TODO: continue*/}
-                <Avatar></Avatar>
 
-                <Divider />
+                {/*----------*/}
+                <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+
+                    <List sx={[{ display: "flex", flexDirection: "column", alignItems: "center" },
+                        open
+                            ? {
+                                justifyContent: 'center',
+                            }
+                            : {
+                                display: "none",
+                            },
+                    ]}>
+                        <Avatar
+                            sx={{ width: "5rem", height:"5rem", marginTop: 1 }}
+                            src={"https://cdn.shopify.com/s/files/1/0086/0795/7054/files/Golden-Retriever.jpg?v=1645179525"}/>
+                        <Typography variant={"h6"}>Artian Rika</Typography>
+                    </List>
 
 
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton
-                                sx={[
-                                    {
+                        <Divider/>
+
+                    {/*Upper Buttons*/}
+
+                    {/*TODO: clicked btn should be active*/}
+                    <List>
+                        {["MKD", "Eurolat", "Dollarkat"].map((text, index) => (
+                            <ListItem key={text}  sx={{ display: "flex", alignItems: "center"}}>
+                                <ListItemButton
+                                    sx={{
                                         minHeight: 48,
                                         px: 2.5,
-                                    },
-                                    open
-                                        ? {
-                                            justifyContent: 'initial',
-                                        }
-                                        : {
-                                            justifyContent: 'center',
+                                        display: "flex",
+                                        justifyContent: open ? "space-between" : "center",
+                                        alignItems: "center",
+                                        border: ".3px solid #ccc",
+                                        borderRadius: "8px",
+                                        transition: "all 0.3s ease",
+                                        "&:hover": {
+                                            border: "0.3px solid #D0EBD1",
+                                            backgroundColor: colors.primary,
                                         },
-                                ]}
-                            >
-                                <ListItemIcon
+                                    }}
+                                >
+                                    <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
+                                        <Box
+                                            component="img"
+                                            src="/icons/macedonia-denar.png"
+                                            alt="Macedonian Denar"
+                                            sx={{
+                                                width: "20px",
+                                                height: "auto",
+                                                objectFit: "contain",
+                                            }}
+                                        />
+                                    </ListItemIcon>
+
+                                    <ListItemText
+                                        primary={text}
+                                        sx={{ opacity: open ? 1 : 0, flexGrow: 1 }}
+                                    />
+
+
+                                    {open && (
+                                        <IconButton sx={{ padding: 0 }}>
+                                            <MoreVertIcon />
+                                        </IconButton>
+                                    )}
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+
+                    {/*    Add Currency BTN    */}
+
+                        <ListItemButton
+                            sx={{
+                                minHeight: 48,
+                                px: 2.5,
+                                margin: ".5rem 1rem",
+                                display: "flex",
+                                justifyContent: open ? "space-between" : "center",
+                                alignItems: "center",
+                                border: ".3px solid #ccc",
+                                borderRadius: "8px",
+                                transition: "all 0.3s ease",
+                                "&:hover": {
+                                    border: "0.3px solid #D0EBD1",
+                                    backgroundColor: colors.primary,
+                                },
+                            }}
+                        >
+                            <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
+                                <AddIcon sx={{ color: "black" }}/>
+                            </ListItemIcon>
+
+                            <ListItemText
+                                primary={"Add currency"}
+                                sx={{ opacity: open ? 1 : 0, flexGrow: 1 }}
+                            />
+
+                        </ListItemButton>
+
+                    </List>
+
+
+                    {/*Bottom part buttons*/}
+
+                    {/*TODO: bottom btns should not move, the currencies should be scrollable njet ke kta*/}
+                    <List sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "end",
+                            mt: "auto"}}
+                    >
+                        {['Options', 'Logout'].map((text, index) => (
+                            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
                                     sx={[
                                         {
-                                            minWidth: 0,
-                                            justifyContent: 'center',
+                                            minHeight: 48,
+                                            px: 2.5,
                                         },
                                         open
                                             ? {
-                                                mr: 3,
+                                                justifyContent: 'initial',
                                             }
                                             : {
-                                                mr: 'auto',
+                                                justifyContent: 'center',
                                             },
                                     ]}
                                 >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={text}
-                                    sx={[
-                                        open
-                                            ? {
-                                                opacity: 1,
-                                            }
-                                            : {
-                                                opacity: 0,
+                                    <ListItemIcon
+                                        sx={[
+                                            {
+                                                minWidth: 0,
+                                                justifyContent: 'center',
                                             },
-                                    ]}
-                                />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton
-                                sx={[
-                                    {
-                                        minHeight: 48,
-                                        px: 2.5,
-                                    },
-                                    open
-                                        ? {
-                                            justifyContent: 'initial',
-                                        }
-                                        : {
-                                            justifyContent: 'center',
-                                        },
-                                ]}
-                            >
-                                <ListItemIcon
-                                    sx={[
-                                        {
-                                            minWidth: 0,
-                                            justifyContent: 'center',
-                                        },
-                                        open
-                                            ? {
-                                                mr: 3,
-                                            }
-                                            : {
-                                                mr: 'auto',
-                                            },
-                                    ]}
-                                >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={text}
-                                    sx={[
-                                        open
-                                            ? {
-                                                opacity: 1,
-                                            }
-                                            : {
-                                                opacity: 0,
-                                            },
-                                    ]}
-                                />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
+                                            open
+                                                ? {
+                                                    mr: 3,
+                                                }
+                                                : {
+                                                    mr: 'auto',
+                                                },
+                                        ]}
+                                    >
+                                        {index % 2 === 0 ? <MoreVertIcon /> : <LogoutIcon sx={{color: "red", }}/>}
+                                    </ListItemIcon>
+
+                                    <ListItemText
+                                        primary={text}
+                                        sx={[
+                                            open
+                                                ? {
+                                                    opacity: 1,
+                                                }
+                                                : {
+                                                    opacity: 0,
+                                                },
+                                        ]}
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
             </Drawer>
+
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 <Typography sx={{ marginBottom: 2 }}>
@@ -280,7 +341,7 @@ export default function MiniDrawer() {
                     et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
                     tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
+                    posuere sollicitudin aliquam ultric  es sagittis orci a.
                 </Typography>
             </Box>
         </Box>
