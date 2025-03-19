@@ -228,6 +228,7 @@ export default function MiniDrawer() {
                                             backgroundColor: colors.primary,
                                         },
                                     }}
+                                    // onClick={}
                                 >
                                     <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
                                         <Box

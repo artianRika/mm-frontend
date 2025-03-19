@@ -3,7 +3,7 @@ import BalanceCard from "./BalanceCard";
 const MainView = () =>{
     return (
         <div>
-            <BalanceCard/>
+            <BalanceCard name={"Denar Savings"} amount={3000} currency={"мкд"} />
         </div>
     );
 }
