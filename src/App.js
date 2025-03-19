@@ -164,7 +164,7 @@ export default function MiniDrawer() {
                     }}
                 >
                     {open && (
-                        <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1, overflow: "hidden" }}>
+                        <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1, overflow: "hidden"}}>
                             <Avatar
                                 sx={{ width: "3rem", height: "3rem", flexShrink: 0 }}
                                 src="https://cdn.shopify.com/s/files/1/0086/0795/7054/files/Golden-Retriever.jpg?v=1645179525"
@@ -202,6 +202,7 @@ export default function MiniDrawer() {
                         overflowY: "auto",
                         scrollbarWidth: "none",
                         overflowX: "hidden",
+                        backgroundColor:"rgba(234,234,234,0.67)",
                         maxHeight: "calc(100vh - 120px)", // Adjust for header and bottom buttons
                     }}
                 >
@@ -209,7 +210,7 @@ export default function MiniDrawer() {
 
                     {/* Scrollable Currency List */}
                     <List>
-                        {["MKD", "Eurolat", "Eurolat", "Dollarkat", "Eurolat", "Dollarkat", "Eurolat", "Dollarkat"].map((text, index) => (
+                        {["Pauna","Eurolat", "Dollars", "Lek"].map((text, index) => (
                             <ListItem key={text} sx={{ display: "flex", alignItems: "center" }}>
                                 <ListItemButton
                                     sx={{
@@ -218,6 +219,7 @@ export default function MiniDrawer() {
                                         display: "flex",
                                         justifyContent: open ? "space-between" : "center",
                                         alignItems: "center",
+                                        backgroundColor: "#fff",
                                         border: ".3px solid #ccc",
                                         borderRadius: "8px",
                                         transition: "all 0.3s ease",
@@ -254,6 +256,7 @@ export default function MiniDrawer() {
                                 px: 2.5,
                                 margin: ".5rem 1rem",
                                 display: "flex",
+                                backgroundColor: "#fff",
                                 justifyContent: open ? "space-between" : "center",
                                 alignItems: "center",
                                 border: ".3px solid #ccc",
@@ -279,7 +282,7 @@ export default function MiniDrawer() {
                     sx={{
                         position: "sticky",
                         bottom: 0,
-                        background: "white",
+                        backgroundColor : "rgba(234,234,234,0.67)",
                         width: "100%",
                         zIndex: 1000,
                     }}
@@ -294,12 +297,12 @@ export default function MiniDrawer() {
                             justifyContent: open ? "space-between" : "center",
                             alignItems: "center",
                             border: "0.3px solid #ccc",
-                            backgroundColor: "#f1f1f1",
+                            backgroundColor: "#fff",
                             borderRadius: "8px",
                             transition: "all 0.3s ease",
                             "&:hover": {
-                                border: "0.3px solid #f1f1f1",
-                                backgroundColor: "white",
+                                border: "0.3px solid rgba(234,234,234,0.67)",
+                                backgroundColor:"rgba(234,234,234,0.67)",
                             },
                         }}
                     >
@@ -320,12 +323,12 @@ export default function MiniDrawer() {
                             justifyContent: open ? "space-between" : "center",
                             alignItems: "center",
                             border: "0.3px solid #ccc",
-                            backgroundColor: "#f1f1f1",
+                            backgroundColor: "#fff",
                             borderRadius: "8px",
                             transition: "all 0.3s ease",
                             "&:hover": {
                                 border: "0.3px solid red",
-                                backgroundColor: "white",
+                                backgroundColor:"rgba(234,234,234,0.67)",
                             },
                         }}
                     >
