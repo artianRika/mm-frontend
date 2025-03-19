@@ -7,7 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -21,6 +20,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
 import {Avatar} from "@mui/material";
 import colors from "./colors"
+import MainView from "./Components/MainView.js";
 
 const drawerWidth = 240;
 
@@ -138,42 +138,79 @@ export default function MiniDrawer() {
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <Drawer
+                variant="permanent"
+                open={open}
+                sx={{
+                    width: open ? 240 : 69, // Adjust width based on open state
+                    flexShrink: 0,
+                    "& .MuiDrawer-paper": {
+                        width: open ? 240 : 69,
+                        transition: "width 0.3s ease", // Smooth transition on toggle
+                    },
+                }}
+            >
+                <DrawerHeader
+                    sx={{
+                        backgroundColor: "rgba(187,215,186,0.73)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        position: "sticky",
+                        top: 0,
+                        zIndex: 1100,
+                        width: "100%",
+                        padding: "0.5rem 1rem",
+                    }}
+                >
+                    {open && (
+                        <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1, overflow: "hidden" }}>
+                            <Avatar
+                                sx={{ width: "3rem", height: "3rem", flexShrink: 0 }}
+                                src="https://cdn.shopify.com/s/files/1/0086/0795/7054/files/Golden-Retriever.jpg?v=1645179525"
+                            />
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    marginLeft: "1rem",
+                                    fontSize: "1rem",
+                                    wordWrap: "break-word", // Ensures long words break
+                                    whiteSpace: "normal", // Allows text to wrap
+                                    display: "-webkit-box", // Enables multi-line with ellipsis fallback
+                                    WebkitBoxOrient: "vertical",
+                                    WebkitLineClamp: 2, // Limits to 2 lines
+                                    overflow: "hidden", // Hides extra content if needed
+                                    flexGrow: 1, // Takes available space
+                                    minWidth: 0, // Ensures it shrinks if needed
+                                }}
+                            >
+                                Artian Rika
+                            </Typography>
+                        </Box>
+                    )}
 
-            <Drawer variant="permanent" open={open}>
-                <DrawerHeader sx={{backgroundColor: "rgba(187,215,186,0.73)"}}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                    <IconButton onClick={handleDrawerClose} sx={{ flexShrink: 0 }}>
+                        {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </DrawerHeader>
 
 
-                {/*----------*/}
-                <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-
-                    <List sx={[{ display: "flex", flexDirection: "column", alignItems: "center" },
-                        open
-                            ? {
-                                justifyContent: 'center',
-                            }
-                            : {
-                                display: "none",
-                            },
-                    ]}>
-                        <Avatar
-                            sx={{ width: "5rem", height:"5rem", marginTop: 1 }}
-                            src={"https://cdn.shopify.com/s/files/1/0086/0795/7054/files/Golden-Retriever.jpg?v=1645179525"}/>
-                        <Typography variant={"h6"}>Artian Rika</Typography>
-                    </List>
+                {/* Scrollable Content (Profile + Currency List) */}
+                <Box
+                    sx={{
+                        flexGrow: 1,
+                        overflowY: "auto",
+                        scrollbarWidth: "none",
+                        overflowX: "hidden",
+                        maxHeight: "calc(100vh - 120px)", // Adjust for header and bottom buttons
+                    }}
+                >
 
 
-                        <Divider/>
-
-                    {/*Upper Buttons*/}
-
-                    {/*TODO: clicked btn should be active*/}
+                    {/* Scrollable Currency List */}
                     <List>
-                        {["MKD", "Eurolat", "Dollarkat"].map((text, index) => (
-                            <ListItem key={text}  sx={{ display: "flex", alignItems: "center"}}>
+                        {["MKD", "Eurolat", "Eurolat", "Dollarkat", "Eurolat", "Dollarkat", "Eurolat", "Dollarkat"].map((text, index) => (
+                            <ListItem key={text} sx={{ display: "flex", alignItems: "center" }}>
                                 <ListItemButton
                                     sx={{
                                         minHeight: 48,
@@ -195,19 +232,11 @@ export default function MiniDrawer() {
                                             component="img"
                                             src="/icons/macedonia-denar.png"
                                             alt="Macedonian Denar"
-                                            sx={{
-                                                width: "20px",
-                                                height: "auto",
-                                                objectFit: "contain",
-                                            }}
+                                            sx={{ width: "20px", height: "auto", objectFit: "contain" }}
                                         />
                                     </ListItemIcon>
 
-                                    <ListItemText
-                                        primary={text}
-                                        sx={{ opacity: open ? 1 : 0, flexGrow: 1 }}
-                                    />
-
+                                    {open && <ListItemText primary={text} sx={{ flexGrow: 1 }} />}
 
                                     {open && (
                                         <IconButton sx={{ padding: 0 }}>
@@ -218,8 +247,7 @@ export default function MiniDrawer() {
                             </ListItem>
                         ))}
 
-                    {/*    Add Currency BTN    */}
-
+                        {/* Add Currency Button */}
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -238,111 +266,84 @@ export default function MiniDrawer() {
                             }}
                         >
                             <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
-                                <AddIcon sx={{ color: "black" }}/>
+                                <AddIcon sx={{ color: "black" }} />
                             </ListItemIcon>
 
-                            <ListItemText
-                                primary={"Add currency"}
-                                sx={{ opacity: open ? 1 : 0, flexGrow: 1 }}
-                            />
-
+                            {open && <ListItemText primary={"Add currency"} sx={{ flexGrow: 1 }} />}
                         </ListItemButton>
-
-                    </List>
-
-
-                    {/*Bottom part buttons*/}
-
-                    {/*TODO: bottom btns should not move, the currencies should be scrollable njet ke kta*/}
-                    <List sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "end",
-                            mt: "auto"}}
-                    >
-                        {['Options', 'Logout'].map((text, index) => (
-                            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                                <ListItemButton
-                                    sx={[
-                                        {
-                                            minHeight: 48,
-                                            px: 2.5,
-                                        },
-                                        open
-                                            ? {
-                                                justifyContent: 'initial',
-                                            }
-                                            : {
-                                                justifyContent: 'center',
-                                            },
-                                    ]}
-                                >
-                                    <ListItemIcon
-                                        sx={[
-                                            {
-                                                minWidth: 0,
-                                                justifyContent: 'center',
-                                            },
-                                            open
-                                                ? {
-                                                    mr: 3,
-                                                }
-                                                : {
-                                                    mr: 'auto',
-                                                },
-                                        ]}
-                                    >
-                                        {index % 2 === 0 ? <MoreVertIcon /> : <LogoutIcon sx={{color: "red", }}/>}
-                                    </ListItemIcon>
-
-                                    <ListItemText
-                                        primary={text}
-                                        sx={[
-                                            open
-                                                ? {
-                                                    opacity: 1,
-                                                }
-                                                : {
-                                                    opacity: 0,
-                                                },
-                                        ]}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
                     </List>
                 </Box>
+
+                {/* Fixed Bottom Buttons */}
+                <List
+                    sx={{
+                        position: "sticky",
+                        bottom: 0,
+                        background: "white",
+                        width: "100%",
+                        zIndex: 1000,
+                    }}
+                >
+                    {/*Options Btn*/}
+                    <ListItemButton
+                        sx={{
+                            maxHeight: 34,
+                            px: 2.5,
+                            margin: ".5rem 1rem",
+                            display: "flex",
+                            justifyContent: open ? "space-between" : "center",
+                            alignItems: "center",
+                            border: "0.3px solid #ccc",
+                            backgroundColor: "#f1f1f1",
+                            borderRadius: "8px",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                                border: "0.3px solid #f1f1f1",
+                                backgroundColor: "white",
+                            },
+                        }}
+                    >
+                        <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
+                            <MoreVertIcon />
+                        </ListItemIcon>
+
+                        {open && <ListItemText primary={"Options"} sx={{ flexGrow: 1 }} />}
+                    </ListItemButton>
+
+                    {/*Logout Button*/}
+                    <ListItemButton
+                        sx={{
+                            maxHeight: 34,
+                            px: 2.5,
+                            margin: ".5rem 1rem",
+                            display: "flex",
+                            justifyContent: open ? "space-between" : "center",
+                            alignItems: "center",
+                            border: "0.3px solid #ccc",
+                            backgroundColor: "#f1f1f1",
+                            borderRadius: "8px",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                                border: "0.3px solid red",
+                                backgroundColor: "white",
+                            },
+                        }}
+                    >
+                        <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
+                            <LogoutIcon sx={{ color: "red" }} />
+                        </ListItemIcon>
+
+                        {open && <ListItemText primary={"Logout"} sx={{ flexGrow: 1 }} />}
+                    </ListItemButton>
+
+                </List>
             </Drawer>
 
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                <Typography sx={{ marginBottom: 2 }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography sx={{ marginBottom: 2 }}>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultric  es sagittis orci a.
-                </Typography>
+
+                <MainView/>
+
             </Box>
         </Box>
     );
