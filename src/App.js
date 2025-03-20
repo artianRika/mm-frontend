@@ -23,6 +23,7 @@ import colors from "./colors"
 import MainView from "./Components/MainView.js";
 import CurrencyButton from "./Components/CurrencyButton";
 import ControlButton from "./Components/ControlButton";
+import LogoutDialog from "./Components/LogoutDialog";
 
 const drawerWidth = 240;
 
@@ -107,6 +108,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+
+    const [alertOpen, setAlertOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -257,7 +260,12 @@ export default function MiniDrawer() {
                     }}
                 >
                     <ControlButton text={"Options"} open={open}/>
-                    <ControlButton text={"Logout"} open={open}/>
+                    <ControlButton text={"Logout"} open={open} alertOpen={alertOpen}
+                        onClick={() => {setAlertOpen(true)}}
+                    />
+
+                    {/*//LogOut Dialog*/}
+                    <LogoutDialog alertOpen={alertOpen} onAlertClose={() => setAlertOpen(false)} />
                 </List>
             </Drawer>
 

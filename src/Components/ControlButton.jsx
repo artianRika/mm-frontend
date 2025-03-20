@@ -6,6 +6,8 @@ import * as React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const ControlButton = (props) =>{
+    const {onClick} = props;
+
     return (
         <ListItemButton
             sx={{
@@ -32,6 +34,7 @@ const ControlButton = (props) =>{
                 },
 
             }}
+            onClick={onClick}
         >
             <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: props.open ? 3 : "auto" }}>
                 { props.text === "Options" ? <MoreVertIcon /> : <LogoutIcon sx={{ color: "red" }} /> }
