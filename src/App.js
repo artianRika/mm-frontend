@@ -21,6 +21,8 @@ import AddIcon from '@mui/icons-material/Add';
 import {Avatar} from "@mui/material";
 import colors from "./colors"
 import MainView from "./Components/MainView.js";
+import CurrencyButton from "./Components/CurrencyButton";
+import ControlButton from "./Components/ControlButton";
 
 const drawerWidth = 240;
 
@@ -210,43 +212,9 @@ export default function MiniDrawer() {
 
                     {/* Scrollable Currency List */}
                     <List>
-                        {["Pauna","Eurolat", "Dollars", "Lek"].map((text, index) => (
+                        {["Dollar", "Euro"].map((text, index) => (
                             <ListItem key={text} sx={{ display: "flex", alignItems: "center" }}>
-                                <ListItemButton
-                                    sx={{
-                                        minHeight: 48,
-                                        px: 2.5,
-                                        display: "flex",
-                                        justifyContent: open ? "space-between" : "center",
-                                        alignItems: "center",
-                                        backgroundColor: "#fff",
-                                        border: ".3px solid #ccc",
-                                        borderRadius: "8px",
-                                        transition: "all 0.3s ease",
-                                        "&:hover": {
-                                            border: "0.3px solid #D0EBD1",
-                                            backgroundColor: colors.primary,
-                                        },
-                                    }}
-                                    // onClick={}
-                                >
-                                    <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
-                                        <Box
-                                            component="img"
-                                            src="/icons/macedonia-denar.png"
-                                            alt="Macedonian Denar"
-                                            sx={{ width: "20px", height: "auto", objectFit: "contain" }}
-                                        />
-                                    </ListItemIcon>
-
-                                    {open && <ListItemText primary={text} sx={{ flexGrow: 1 }} />}
-
-                                    {open && (
-                                        <IconButton sx={{ padding: 0 }}>
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                    )}
-                                </ListItemButton>
+                                <CurrencyButton text={text} open={open} currency={"USD"}/>
                             </ListItem>
                         ))}
 
@@ -288,58 +256,8 @@ export default function MiniDrawer() {
                         zIndex: 1000,
                     }}
                 >
-                    {/*Options Btn*/}
-                    <ListItemButton
-                        sx={{
-                            maxHeight: 34,
-                            px: 2.5,
-                            margin: ".5rem 1rem",
-                            display: "flex",
-                            justifyContent: open ? "space-between" : "center",
-                            alignItems: "center",
-                            border: "0.3px solid #ccc",
-                            backgroundColor: "#fff",
-                            borderRadius: "8px",
-                            transition: "all 0.3s ease",
-                            "&:hover": {
-                                border: "0.3px solid rgba(234,234,234,0.67)",
-                                backgroundColor:"rgba(234,234,234,0.67)",
-                            },
-                        }}
-                    >
-                        <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
-                            <MoreVertIcon />
-                        </ListItemIcon>
-
-                        {open && <ListItemText primary={"Options"} sx={{ flexGrow: 1 }} />}
-                    </ListItemButton>
-
-                    {/*Logout Button*/}
-                    <ListItemButton
-                        sx={{
-                            maxHeight: 34,
-                            px: 2.5,
-                            margin: ".5rem 1rem",
-                            display: "flex",
-                            justifyContent: open ? "space-between" : "center",
-                            alignItems: "center",
-                            border: "0.3px solid #ccc",
-                            backgroundColor: "#fff",
-                            borderRadius: "8px",
-                            transition: "all 0.3s ease",
-                            "&:hover": {
-                                border: "0.3px solid red",
-                                backgroundColor:"rgba(234,234,234,0.67)",
-                            },
-                        }}
-                    >
-                        <ListItemIcon sx={{ minWidth: 0, justifyContent: "center", mr: open ? 3 : "auto" }}>
-                            <LogoutIcon sx={{ color: "red" }} />
-                        </ListItemIcon>
-
-                        {open && <ListItemText primary={"Logout"} sx={{ flexGrow: 1 }} />}
-                    </ListItemButton>
-
+                    <ControlButton text={"Options"} open={open}/>
+                    <ControlButton text={"Logout"} open={open}/>
                 </List>
             </Drawer>
 

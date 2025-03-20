@@ -37,14 +37,22 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+<<<<<<< Updated upstream
     "git-widget-placeholder": "master",
+=======
+    "git-widget-placeholder": "<unknown>",
+>>>>>>> Stashed changes
     "last_opened_file_path": "D:/Projects/React/MM-frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< Updated upstream
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+=======
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+>>>>>>> Stashed changes
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -67,8 +75,15 @@
       <workItem from="1741552418388" duration="283000" />
       <workItem from="1741552715963" duration="937000" />
       <workItem from="1741636948296" duration="6965000" />
+<<<<<<< Updated upstream
       <workItem from="1741721513107" duration="10835000" />
       <workItem from="1742398746676" duration="1214000" />
+=======
+      <workItem from="1741721513107" duration="10770000" />
+      <workItem from="1741987581708" duration="6686000" />
+      <workItem from="1741995434198" duration="484000" />
+      <workItem from="1742162152044" duration="68000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
