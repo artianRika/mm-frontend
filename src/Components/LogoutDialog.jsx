@@ -6,12 +6,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import colors from "../colors";
 
 export default function LogoutDialog(props) {
-    // const [open, setOpen] = React.useState(false);
 
     const { alertOpen, onAlertClose } = props;
 
     return (
-        <Dialog open={alertOpen} onClose={onAlertClose}>
+        <Dialog open={alertOpen} onClose={onAlertClose}
+                PaperProps={{
+                    sx: {
+                        width: "400px",
+                        padding: ".2rem",
+                        borderRadius: "9px",
+                    },
+                }}>
             <DialogTitle sx={{fontSize: "1rem"}} >Are you sure you want to sign out?</DialogTitle>
 
             <DialogActions>

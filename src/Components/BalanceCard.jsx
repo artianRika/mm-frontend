@@ -1,7 +1,13 @@
 import {Edit, AddCircleOutline, RemoveCircleOutline} from "@mui/icons-material";
 import {Button} from "@mui/material";
+import AddCurrencyModal from "./AddCurrencyModal";
+import * as React from "react";
+import EditAmountModal from "./EditAmountModal";
 
 const BalanceCard = (props) =>{
+
+    const [editAmountAlertOpen, setEditAmountAlertOpen] = React.useState(false);
+
     return (
         <div className={"flex justify-center"}>
 
@@ -10,9 +16,10 @@ const BalanceCard = (props) =>{
                 <div className="flex justify-between w-full">
                     <div className="flex flex-col justify-start ml-3">{props.name}</div>
                     <div className="flex flex-col justify-end">
-                        <Button color={"#000"}>
+                        <Button color={"#000"} onClick={() => setEditAmountAlertOpen(true)}>
                             <Edit/>
                         </Button>
+                        <EditAmountModal editAmountAlertOpen={editAmountAlertOpen} editAmountClose={() => setEditAmountAlertOpen(false)} />
                     </div>
                 </div>
 
