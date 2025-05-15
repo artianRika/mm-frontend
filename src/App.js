@@ -147,7 +147,7 @@ export default function MiniDrawer() {
                 variant="permanent"
                 open={open}
                 sx={{
-                    width: open ? 240 : 69, // Adjust width based on open state
+                    width: open ? 240 : 69,
                     flexShrink: 0,
                     "& .MuiDrawer-paper": {
                         width: open ? 240 : 69,
@@ -178,15 +178,15 @@ export default function MiniDrawer() {
                                 variant="h6"
                                 sx={{
                                     marginLeft: "1rem",
-                                    fontSize: "1rem",
-                                    wordWrap: "break-word", // Ensures long words break
-                                    whiteSpace: "normal", // Allows text to wrap
-                                    display: "-webkit-box", // Enables multi-line with ellipsis fallback
+                                    fontSize: ".9rem",
+                                    wordWrap: "break-word",
+                                    whiteSpace: "normal",
+                                    display: "-webkit-box",
                                     WebkitBoxOrient: "vertical",
-                                    WebkitLineClamp: 2, // Limits to 2 lines
-                                    overflow: "hidden", // Hides extra content if needed
-                                    flexGrow: 1, // Takes available space
-                                    minWidth: 0, // Ensures it shrinks if needed
+                                    WebkitLineClamp: 2,
+                                    overflow: "hidden",
+                                    flexGrow: 1,
+                                    minWidth: 0,
                                 }}
                             >
                                 Artian Rika

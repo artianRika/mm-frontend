@@ -34,11 +34,11 @@ const CurrencyButton = (props) =>{
                   justifyContent: props.open ? "space-between" : "center",
                   alignItems: "center",
                   backgroundColor: "#fff",
-                  border: ".3px solid #ccc",
+                  // border: ".3px solid #ccc",
                   borderRadius: "8px",
                   transition: "all 0.3s ease",
                   "&:hover": {
-                      border: "0.3px solid #D0EBD1",
+                      // border: "0.3px solid #D0EBD1",
                       backgroundColor: colors.primary,
                   },
               }}
